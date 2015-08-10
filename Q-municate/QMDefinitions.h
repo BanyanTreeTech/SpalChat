@@ -18,6 +18,8 @@
 #define API_SCHOOLLIST    @"http://spalchat.com/spalchat_web_service/API/get_school_list.php?type=%@"
 #define API_GRADELIST       @"http://spalchat.com/spalchat_web_service/API/get_grade_list.php"
 
+#define API_SIGNUP          @"http://spalchat.com/spalchat_web_service/API/registration.php?parent_name=%@&phone_number=%@&is_parent=%@&device_id=%@&device_os=%@&school_id=%@&child_info=%@"
+
 
 #define IS_HEIGHT_GTE_568 [[UIScreen mainScreen ] bounds].size.height >= 568.0f
 #define $(...)  [NSSet setWithObjects:__VA_ARGS__, nil]
@@ -87,6 +89,7 @@ static NSString *const SGradeListID        = @"SGradeListID";
 static NSString *const SignYourname         = @"SignYourname";
 static NSString *const SignChildname        = @"SignChildname";
 static NSString *const SignClassroomname    = @"SignClassroomname";
+static NSString *const SignPhonenumber    = @"SignPhonenumber";
 
 static NSString *const SignFlag             = @"SignFlag";
 

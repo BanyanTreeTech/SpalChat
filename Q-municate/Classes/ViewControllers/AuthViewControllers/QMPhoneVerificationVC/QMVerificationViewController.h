@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@interface childInfo2 : NSObject
+
+@property (nonatomic, copy) NSString*   child_name;
+@property (nonatomic, copy) NSString*   school_id;
+
+@property (nonatomic, copy) NSString*   grade_name;
+@property (nonatomic, copy) NSString*   classroom_name;
+
+@end
+
 @interface QMVerificationViewController : UIViewController <UITextFieldDelegate> {
     
     NSString *yourName;
@@ -21,6 +31,12 @@
     
     NSString *classroomName;
     NSString *selFlag;
+    
+    NSString *phoneNumber;
+    
+    NSMutableData*     responseData;
+    
+    NSMutableArray* childArray;
 }
 
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;

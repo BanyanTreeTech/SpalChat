@@ -48,6 +48,8 @@
         return;
     } else {
         
+        [[NSUserDefaults standardUserDefaults] setObject:self.phonenumberText.text      forKey:SignYourname];
+        
         [self performSegueWithIdentifier:kPhoneVeriSegue sender:nil];
     }
 }
