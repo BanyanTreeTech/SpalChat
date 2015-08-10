@@ -84,8 +84,8 @@ static const int kStateKey;
     
     self.contentInset = [self TPKeyboardAvoiding_contentInsetForKeyboard];
     
-    CGFloat viewableHeight = self.bounds.size.height - self.contentInset.top - self.contentInset.bottom;
-//    CGFloat viewableHeight = 80;
+//    CGFloat viewableHeight = self.bounds.size.height - self.contentInset.top - self.contentInset.bottom;
+    CGFloat viewableHeight = 80;
     
     [self setContentOffset:CGPointMake(self.contentOffset.x,
                                        [self TPKeyboardAvoiding_idealOffsetForView:firstResponder
@@ -124,9 +124,13 @@ static const int kStateKey;
     
     self.contentInset = state.priorInset;
     self.scrollIndicatorInsets = state.priorScrollIndicatorInsets;
+    
+    
     self.pagingEnabled = state.priorPagingEnabled;
 	[self layoutIfNeeded];
     [UIView commitAnimations];
+    
+    [self setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)TPKeyboardAvoiding_updateContentInset {
@@ -167,8 +171,8 @@ static const int kStateKey;
     
     if ( !state.keyboardVisible ) return;
     
-    CGFloat visibleSpace = self.bounds.size.height - self.contentInset.top - self.contentInset.bottom;
-//    CGFloat visibleSpace = 60;
+//    CGFloat visibleSpace = self.bounds.size.height - self.contentInset.top - self.contentInset.bottom;
+    CGFloat visibleSpace = 60;
     
     CGPoint idealOffset = CGPointMake(0, [self TPKeyboardAvoiding_idealOffsetForView:[self TPKeyboardAvoiding_findFirstResponderBeneathView:self]
                                                                withViewingAreaHeight:visibleSpace]);

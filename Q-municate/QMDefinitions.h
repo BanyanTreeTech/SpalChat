@@ -16,6 +16,7 @@
 #define DELETING_DIALOGS_ENABLED 0
 
 #define API_SCHOOLLIST    @"http://spalchat.com/spalchat_web_service/API/get_school_list.php?type=%@"
+#define API_GRADELIST       @"http://spalchat.com/spalchat_web_service/API/get_grade_list.php"
 
 
 #define IS_HEIGHT_GTE_568 [[UIScreen mainScreen ] bounds].size.height >= 568.0f
@@ -56,6 +57,10 @@ static NSString *const kSignUpSegueIdentifier         = @"SignUpSegue";
 static NSString *const kSchoolListSegueIdentifier     = @"SchoolListSegue";
 static NSString *const kAddChildSegueIdentifier       = @"AddChildSegue";
 
+static NSString *const kPhoneSegue       = @"NextInputPhoneSegue";
+static NSString *const kPhoneVeriSegue       = @"NextInputVeriSegue";
+static NSString *const KGoTabMainSegue       = @"GoTabMainSegue";
+
 static NSString *const kLogInSegueSegueIdentifier     = @"LogInSegue";
 static NSString *const kDetailsSegueIdentifier        = @"DetailsSegue";
 static NSString *const kVideoCallSegueIdentifier      = @"VideoCallSegue";
@@ -71,6 +76,19 @@ static NSString *const kGroupDetailsSegueIdentifier   = @"GroupDetailsSegue";
 static NSString *const kQMAddMembersToGroupControllerSegue = @"QMAddMembersToGroupControllerSegue";
 
 static NSString *const kSettingsCellBundleVersion = @"CFBundleVersion";
+
+
+static NSString *const SSchoolListName      = @"SSchoolListName";
+static NSString *const SSchoolListID        = @"SSchoolListID";
+
+static NSString *const SGradeListName      = @"SGradeListName";
+static NSString *const SGradeListID        = @"SGradeListID";
+
+static NSString *const SignYourname         = @"SignYourname";
+static NSString *const SignChildname        = @"SignChildname";
+static NSString *const SignClassroomname    = @"SignClassroomname";
+
+static NSString *const SignFlag             = @"SignFlag";
 
 //******************** USER DEFAULTS KEYS *****************
 

@@ -39,6 +39,19 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)GoVerification:(id)sender {
+    
+    if (self.phonenumberText.text.length < 10) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Invalid Phone number!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        return;
+    } else {
+        
+        [self performSegueWithIdentifier:kPhoneVeriSegue sender:nil];
+    }
+}
+
 // dismiss keyboard when tap outside text fields
 - (IBAction)tapScreen:(UITapGestureRecognizer *)sender {
     

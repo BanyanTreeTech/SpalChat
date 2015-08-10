@@ -19,12 +19,16 @@
 
     NSArray *DetailsData;
     int     listID;
+    
+    NSString *selectedId;
+    NSString *selectedName;
 
     NSMutableData*     responseData;
     NSMutableArray*     listArray;
     NSMutableArray*     listTempArray;
     
     int curConnectionState;
+    
 }
 
 

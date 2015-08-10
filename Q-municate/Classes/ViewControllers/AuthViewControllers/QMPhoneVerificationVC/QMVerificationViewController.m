@@ -40,6 +40,33 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)GoTabMain:(id)sender {
+    
+    yourName = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    childName = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    schoolID = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    schoolName = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    
+    gradeID = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    gradeName = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    
+    classroomName = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    selFlag = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    
+    
+    if ([verificationText.text  isEqual: @"123456"]) {
+        
+        [self performSegueWithIdentifier:KGoTabMainSegue sender:nil];
+    } else {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Invalid Verification code!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+    
+    
+}
+
 // dismiss keyboard when tap outside text fields
 - (IBAction)tapScreen:(UITapGestureRecognizer *)sender {
     

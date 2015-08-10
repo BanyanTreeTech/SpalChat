@@ -65,7 +65,19 @@
 }
 
 - (IBAction)Done:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if ([selectedId  isEqual: @"-1"]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please input school name!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        
+        [[NSUserDefaults standardUserDefaults] setObject:selectedId      forKey:SSchoolListID];
+        [[NSUserDefaults standardUserDefaults] setObject:selectedName      forKey:SSchoolListName];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 
@@ -73,6 +85,8 @@
 
 
 - (void) searchListWithFiterItem {
+    
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
     
     NSString* url = nil;
     url = [NSString stringWithFormat:API_SCHOOLLIST, @"all"];
@@ -152,7 +166,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [listTempArray count];
+    NSLog(@"%lu",(unsigned long)schoolNameText.text.length);
+    
+    if (schoolNameText.text.length > 0) {
+        return [listTempArray count];
+    } else {
+        return [listArray count];
+    }
+
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -173,24 +194,24 @@
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-
+    
+    if (schoolNameText.text.length > 0) {
         schoolListItem *Item = [listTempArray objectAtIndex:indexPath.row];
+        
         cell.textLabel.text = Item.schoolName;
+    } else {
+        
+        schoolListItem *Item = [listArray objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = Item.schoolName;
+    }
+    
+    
 
 
     
 //    cell.textLabel.text = @"1123";
     [cell.textLabel setFont:[UIFont fontWithName:@"Open Sans" size:16.0]];
-//    UIButton*       cellCheckBtn = (UIButton*) [cell viewWithTag:321];
-//    
-
-//
-//    
-//    if (GenderType == indexPath.row) {
-//        cellCheckBtn.selected = YES;
-//    } else {
-//        cellCheckBtn.selected = NO;
-//    }
     
 
     return cell;
@@ -200,7 +221,12 @@
     
     listID = (int) indexPath.row;
     
-    self.addSchoolNameText.text = @"";
+    schoolListItem *listItem = [listArray objectAtIndex:listID];
+    
+    self.schoolNameText.text = listItem.schoolName;
+    
+    selectedName = listItem.schoolName;
+    selectedId   = listItem.schoolID;
     
     [tableView reloadData];
 }
@@ -236,7 +262,7 @@
     
     if (textField == self.schoolNameText) {
         
-        [self searchListWithFiterItem];
+//        [self searchListWithFiterItem];
 //        self.addSchoolNameText.text = @"";
     } else {
         
@@ -246,38 +272,35 @@
             listID = -1;
             
             [self.tbl_SchoolListView reloadData];
+            
+            selectedId = @"0";
+        } else {
+            
+            selectedId = @"-1";
         }
+        
+        selectedName = self.addSchoolNameText.text;
+        
     }
     
     return YES;
 }
 
-- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    NSLog(@"change key - %@", schoolNameText.text);
-    NSLog(@"change key - %d", schoolNameText.text.length);
-    
+- (IBAction)onTextChanged:(id)sender {
     [listTempArray removeAllObjects];
     
-    
-        for (int i = 0; i < (int) listArray.count; i++) {
-            
-            schoolListItem *Item = [listArray objectAtIndex:i];
-            
-//            NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
-//            NSRange productNameRange = NSMakeRange(0, schoolName.length);
-//            NSRange foundRange = [schoolName rangeOfString:schoolName options:searchOptions range:productNameRange];
-
-//            if ([Item.schoolName rangeOfString:@"hello"] == 0) {
-//                NSLog(@"sub string doesnt exist");
-//            }
-            
+//    NSLog(@"%@", schoolNameText.text);
+        
+    for (int i = 0; i < (int) listArray.count; i++) {
+        schoolListItem *item = [listArray objectAtIndex:i];
+        NSRange foundRange = [item.schoolName.lowercaseString rangeOfString:schoolNameText.text.lowercaseString];
+        
+        if (foundRange.length > 0) {
+            [listTempArray addObject:item];
         }
-
+    }
     
     [tbl_SchoolListView reloadData];
-    
-    return YES;
 }
 
 /*

@@ -15,6 +15,16 @@
 		14D834671AB0903900300266 /* QMVideoP2PController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D834661AB0903900300266 /* QMVideoP2PController.m */; };
 		1514EC4D1B765541002F9C3F /* QMLoginPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1514EC4C1B765541002F9C3F /* QMLoginPhoneNumberViewController.m */; };
 		1514EC501B765559002F9C3F /* QMLoginVerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1514EC4F1B765559002F9C3F /* QMLoginVerificationViewController.m */; };
+		153D5A371B78FB2400105C2F /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 153D5A341B78FB2400105C2F /* MJPopupBackgroundView.m */; };
+		153D5A381B78FB2400105C2F /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153D5A361B78FB2400105C2F /* UIViewController+MJPopupViewController.m */; };
+		153D5A3B1B78FC2600105C2F /* MJDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153D5A3A1B78FC2600105C2F /* MJDetailViewController.m */; };
+		153D5A3E1B791B6400105C2F /* chat1.png in Resources */ = {isa = PBXBuildFile; fileRef = 153D5A3C1B791B6400105C2F /* chat1.png */; };
+		153D5A3F1B791B6400105C2F /* chat1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 153D5A3D1B791B6400105C2F /* chat1@2x.png */; };
+		154FAABD1B77D95C00061084 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FAAAF1B77D95C00061084 /* DataManager.m */; };
+		154FAABE1B77D95C00061084 /* UIColor+NHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FAAB21B77D95C00061084 /* UIColor+NHExtension.m */; };
+		154FAABF1B77D95C00061084 /* UILabel+Boldify.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FAAB41B77D95C00061084 /* UILabel+Boldify.m */; };
+		154FAAC01B77D95C00061084 /* UIView+NHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FAAB61B77D95C00061084 /* UIView+NHExtension.m */; };
+		154FAAC11B77D95C00061084 /* NHAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FAABB1B77D95C00061084 /* NHAutoCompleteTextField.m */; };
 		154FF43E1B68CA9600F52A7D /* QMSchoolListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FF43D1B68CA9600F52A7D /* QMSchoolListViewController.m */; };
 		157B4AFF1B6E613D003D1574 /* addChild.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AB91B6E613C003D1574 /* addChild.png */; };
 		157B4B001B6E613D003D1574 /* addChild@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4ABA1B6E613C003D1574 /* addChild@2x.png */; };
@@ -42,8 +52,6 @@
 		157B4B161B6E613D003D1574 /* chat_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AD01B6E613D003D1574 /* chat_blue@2x.png */; };
 		157B4B171B6E613D003D1574 /* chat_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AD11B6E613D003D1574 /* chat_white.png */; };
 		157B4B181B6E613D003D1574 /* chat_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AD21B6E613D003D1574 /* chat_white@2x.png */; };
-		157B4B191B6E613D003D1574 /* chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AD31B6E613D003D1574 /* chat.png */; };
-		157B4B1A1B6E613D003D1574 /* chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AD41B6E613D003D1574 /* chat@2x.png */; };
 		157B4B1B1B6E613D003D1574 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AD51B6E613D003D1574 /* check.png */; };
 		157B4B1C1B6E613D003D1574 /* check@2zx.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AD61B6E613D003D1574 /* check@2zx.png */; };
 		157B4B1D1B6E613D003D1574 /* contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 157B4AD71B6E613D003D1574 /* contact.png */; };
@@ -413,6 +421,26 @@
 		1514EC4C1B765541002F9C3F /* QMLoginPhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMLoginPhoneNumberViewController.m; sourceTree = "<group>"; };
 		1514EC4E1B765559002F9C3F /* QMLoginVerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMLoginVerificationViewController.h; sourceTree = "<group>"; };
 		1514EC4F1B765559002F9C3F /* QMLoginVerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMLoginVerificationViewController.m; sourceTree = "<group>"; };
+		153D5A331B78FB2400105C2F /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
+		153D5A341B78FB2400105C2F /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
+		153D5A351B78FB2400105C2F /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
+		153D5A361B78FB2400105C2F /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
+		153D5A391B78FC2600105C2F /* MJDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDetailViewController.h; sourceTree = "<group>"; };
+		153D5A3A1B78FC2600105C2F /* MJDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDetailViewController.m; sourceTree = "<group>"; };
+		153D5A3C1B791B6400105C2F /* chat1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat1.png; sourceTree = "<group>"; };
+		153D5A3D1B791B6400105C2F /* chat1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat1@2x.png"; sourceTree = "<group>"; };
+		154FAAAE1B77D95C00061084 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		154FAAAF1B77D95C00061084 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		154FAAB11B77D95C00061084 /* UIColor+NHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+NHExtension.h"; sourceTree = "<group>"; };
+		154FAAB21B77D95C00061084 /* UIColor+NHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+NHExtension.m"; sourceTree = "<group>"; };
+		154FAAB31B77D95C00061084 /* UILabel+Boldify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Boldify.h"; sourceTree = "<group>"; };
+		154FAAB41B77D95C00061084 /* UILabel+Boldify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Boldify.m"; sourceTree = "<group>"; };
+		154FAAB51B77D95C00061084 /* UIView+NHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NHExtension.h"; sourceTree = "<group>"; };
+		154FAAB61B77D95C00061084 /* UIView+NHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NHExtension.m"; sourceTree = "<group>"; };
+		154FAAB81B77D95C00061084 /* NHConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHConstants.h; sourceTree = "<group>"; };
+		154FAABA1B77D95C00061084 /* NHAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHAutoCompleteTextField.h; sourceTree = "<group>"; };
+		154FAABB1B77D95C00061084 /* NHAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NHAutoCompleteTextField.m; sourceTree = "<group>"; };
+		154FAABC1B77D95C00061084 /* NHMainHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NHMainHeader.h; sourceTree = "<group>"; };
 		154FF43C1B68CA9600F52A7D /* QMSchoolListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSchoolListViewController.h; sourceTree = "<group>"; };
 		154FF43D1B68CA9600F52A7D /* QMSchoolListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSchoolListViewController.m; sourceTree = "<group>"; };
 		157B4AB91B6E613C003D1574 /* addChild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addChild.png; sourceTree = "<group>"; };
@@ -441,8 +469,6 @@
 		157B4AD01B6E613D003D1574 /* chat_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_blue@2x.png"; sourceTree = "<group>"; };
 		157B4AD11B6E613D003D1574 /* chat_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_white.png; sourceTree = "<group>"; };
 		157B4AD21B6E613D003D1574 /* chat_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_white@2x.png"; sourceTree = "<group>"; };
-		157B4AD31B6E613D003D1574 /* chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat.png; sourceTree = "<group>"; };
-		157B4AD41B6E613D003D1574 /* chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat@2x.png"; sourceTree = "<group>"; };
 		157B4AD51B6E613D003D1574 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		157B4AD61B6E613D003D1574 /* check@2zx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2zx.png"; sourceTree = "<group>"; };
 		157B4AD71B6E613D003D1574 /* contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact.png; sourceTree = "<group>"; };
@@ -1044,6 +1070,68 @@
 			path = QMLoginPhoneVeriVC;
 			sourceTree = "<group>";
 		};
+		153D5A321B78FB2400105C2F /* PopView */ = {
+			isa = PBXGroup;
+			children = (
+				153D5A331B78FB2400105C2F /* MJPopupBackgroundView.h */,
+				153D5A341B78FB2400105C2F /* MJPopupBackgroundView.m */,
+				153D5A351B78FB2400105C2F /* UIViewController+MJPopupViewController.h */,
+				153D5A361B78FB2400105C2F /* UIViewController+MJPopupViewController.m */,
+			);
+			path = PopView;
+			sourceTree = "<group>";
+		};
+		154FAAAC1B77D95C00061084 /* AutoSearch */ = {
+			isa = PBXGroup;
+			children = (
+				154FAAAD1B77D95C00061084 /* DataManager */,
+				154FAAB01B77D95C00061084 /* Extensions */,
+				154FAAB71B77D95C00061084 /* NHClasses */,
+			);
+			path = AutoSearch;
+			sourceTree = "<group>";
+		};
+		154FAAAD1B77D95C00061084 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				154FAAAE1B77D95C00061084 /* DataManager.h */,
+				154FAAAF1B77D95C00061084 /* DataManager.m */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		154FAAB01B77D95C00061084 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				154FAAB11B77D95C00061084 /* UIColor+NHExtension.h */,
+				154FAAB21B77D95C00061084 /* UIColor+NHExtension.m */,
+				154FAAB31B77D95C00061084 /* UILabel+Boldify.h */,
+				154FAAB41B77D95C00061084 /* UILabel+Boldify.m */,
+				154FAAB51B77D95C00061084 /* UIView+NHExtension.h */,
+				154FAAB61B77D95C00061084 /* UIView+NHExtension.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		154FAAB71B77D95C00061084 /* NHClasses */ = {
+			isa = PBXGroup;
+			children = (
+				154FAAB81B77D95C00061084 /* NHConstants.h */,
+				154FAAB91B77D95C00061084 /* NHHelper */,
+				154FAABC1B77D95C00061084 /* NHMainHeader.h */,
+			);
+			path = NHClasses;
+			sourceTree = "<group>";
+		};
+		154FAAB91B77D95C00061084 /* NHHelper */ = {
+			isa = PBXGroup;
+			children = (
+				154FAABA1B77D95C00061084 /* NHAutoCompleteTextField.h */,
+				154FAABB1B77D95C00061084 /* NHAutoCompleteTextField.m */,
+			);
+			path = NHHelper;
+			sourceTree = "<group>";
+		};
 		154FF43B1B68CA8400F52A7D /* QMSchoolListVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,6 +1255,8 @@
 		15B4F1C61B67CD19004F0718 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				153D5A3C1B791B6400105C2F /* chat1.png */,
+				153D5A3D1B791B6400105C2F /* chat1@2x.png */,
 				15A8AE831B74255800A04B9C /* photo1.png */,
 				15A8AE841B74255800A04B9C /* pserson.png */,
 				15A8AE7F1B7404C100A04B9C /* backBtn_Blue.png */,
@@ -1212,8 +1302,6 @@
 				157B4AD01B6E613D003D1574 /* chat_blue@2x.png */,
 				157B4AD11B6E613D003D1574 /* chat_white.png */,
 				157B4AD21B6E613D003D1574 /* chat_white@2x.png */,
-				157B4AD31B6E613D003D1574 /* chat.png */,
-				157B4AD41B6E613D003D1574 /* chat@2x.png */,
 				157B4AD51B6E613D003D1574 /* check.png */,
 				157B4AD61B6E613D003D1574 /* check@2zx.png */,
 				157B4AD71B6E613D003D1574 /* contact.png */,
@@ -1272,6 +1360,10 @@
 		15FD0F5C1B74ABAE00042E00 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				153D5A391B78FC2600105C2F /* MJDetailViewController.h */,
+				153D5A3A1B78FC2600105C2F /* MJDetailViewController.m */,
+				153D5A321B78FB2400105C2F /* PopView */,
+				154FAAAC1B77D95C00061084 /* AutoSearch */,
 				15A88B7B1B7538D600625C27 /* JSON */,
 				15FD0F5D1B74ABAE00042E00 /* TPKeyboardAvoiding */,
 			);
@@ -2865,10 +2957,10 @@
 				157B4B651B6E6947003D1574 /* Copy of 01_SignUp_03.jpg in Resources */,
 				15A8AE7D1B73F33000A04B9C /* room1.png in Resources */,
 				157B4B791B6E6947003D1574 /* Copy of 15_Profile_child_editing.jpg in Resources */,
-				157B4B191B6E613D003D1574 /* chat.png in Resources */,
 				157B4B401B6E613D003D1574 /* teacherBtnB@2x.png in Resources */,
 				55A8B06F1965986A00B5D33B /* busy.wav in Resources */,
 				157B4B011B6E613D003D1574 /* addEmBlue.png in Resources */,
+				153D5A3E1B791B6400105C2F /* chat1.png in Resources */,
 				157B4B1D1B6E613D003D1574 /* contact.png in Resources */,
 				157B4B6A1B6E6947003D1574 /* Copy of 02_School List_02.jpg in Resources */,
 				552E483B199A2711006A25E1 /* QMFriendListCell.xib in Resources */,
@@ -2890,6 +2982,7 @@
 				157B4B751B6E6947003D1574 /* Copy of 13_New chat.jpg in Resources */,
 				157B4B271B6E613D003D1574 /* helpBlue.png in Resources */,
 				55A8B0731965986A00B5D33B /* ringtone.wav in Resources */,
+				153D5A3F1B791B6400105C2F /* chat1@2x.png in Resources */,
 				157B4B231B6E613D003D1574 /* girl.png in Resources */,
 				157B4B631B6E6947003D1574 /* Copy of 01_SignUp_01.jpg in Resources */,
 				15B4F1C01B6779D8004F0718 /* OpenSans-Regular.ttf in Resources */,
@@ -2922,7 +3015,6 @@
 				157B4B031B6E613D003D1574 /* addEmployee.png in Resources */,
 				157B4B0F1B6E613D003D1574 /* avatarImg.png in Resources */,
 				157B4B0E1B6E613D003D1574 /* avatarGrpImg@2x.png in Resources */,
-				157B4B1A1B6E613D003D1574 /* chat@2x.png in Resources */,
 				157B4B3A1B6E613D003D1574 /* searchIcon_white@2x.png in Resources */,
 				157B4B341B6E613D003D1574 /* phoneIconBlue@2x.png in Resources */,
 				157B4B2A1B6E613D003D1574 /* helpBtn@2x.png in Resources */,
@@ -3095,6 +3187,7 @@
 				55CEAB9A195DBCFA001A8ED6 /* QMChatViewController.m in Sources */,
 				55A8B06C1965986A00B5D33B /* QBEchoObject.m in Sources */,
 				15FD0F681B74ABAE00042E00 /* TPKeyboardAvoidingTableView.m in Sources */,
+				153D5A3B1B78FC2600105C2F /* MJDetailViewController.m in Sources */,
 				6943849418E42691001E08A9 /* UIImage+Cropper.m in Sources */,
 				55D8ADA719AC75FA00DAF79F /* MagicalRecordInternal.m in Sources */,
 				55D8AD9C19AC75FA00DAF79F /* NSPersistentStoreCoordinator+MagicalInMemoryStoreAdditions.m in Sources */,
@@ -3116,6 +3209,7 @@
 				55D8ADAC19AC75FA00DAF79F /* ClassicWithBackgroundCoordinatorSQLiteMagicalRecordStack.m in Sources */,
 				55D8AD8C19AC75FA00DAF79F /* NSObject+MagicalDataImport.m in Sources */,
 				55A8B06E1965986A00B5D33B /* QMSoundManager.m in Sources */,
+				154FAABE1B77D95C00061084 /* UIColor+NHExtension.m in Sources */,
 				55CEAB8F195DBCFA001A8ED6 /* QMChatDataSource.m in Sources */,
 				55D270941940B8D300238D50 /* QMDBStorage.m in Sources */,
 				55CEAB9E195DBCFA001A8ED6 /* QMFriendsDetailsController.m in Sources */,
@@ -3140,6 +3234,7 @@
 				55D8ADE219AC76F900DAF79F /* QMChangePasswordVC.m in Sources */,
 				55D8ADE819AC771400DAF79F /* QMOnlineTitle.m in Sources */,
 				55CEAB96195DBCFA001A8ED6 /* QMMessage.m in Sources */,
+				154FAAC11B77D95C00061084 /* NHAutoCompleteTextField.m in Sources */,
 				55CEAB9F195DBCFA001A8ED6 /* QMGroupDetailsController.m in Sources */,
 				552B423919471E19008DF1E8 /* CDAttachment.m in Sources */,
 				55BBA75C19730B960040DB5C /* REMessageUI.m in Sources */,
@@ -3155,11 +3250,13 @@
 				55CEAB9C195DBCFA001A8ED6 /* QMContentPreviewController.m in Sources */,
 				55D8AD8919AC75FA00DAF79F /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				559BDFEA19618D3D000588FE /* QMWelcomeScreenViewController.m in Sources */,
+				154FAABF1B77D95C00061084 /* UILabel+Boldify.m in Sources */,
 				15FD0F671B74ABAE00042E00 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				55D8ADC419AC765F00DAF79F /* QMChatButtonsFactory.m in Sources */,
 				55D8ADB119AC75FA00DAF79F /* SQLiteMagicalRecordStack.m in Sources */,
 				55BBA760197327AB0040DB5C /* QMDialogsViewController.m in Sources */,
 				55A8B046196597B400B5D33B /* QMApi.m in Sources */,
+				153D5A371B78FB2400105C2F /* MJPopupBackgroundView.m in Sources */,
 				24D01C3C1A263F0500F9A67D /* QMChatReceiver+Messages.m in Sources */,
 				144069951AB04309007E6AD0 /* IAButton.m in Sources */,
 				55A8B0A5196599FA00B5D33B /* QMApi+Auth.m in Sources */,
@@ -3205,6 +3302,7 @@
 				55D270921940B8D300238D50 /* QMDBStorage+Messages.m in Sources */,
 				55CEAB85195DBCFA001A8ED6 /* NSString+UsedSize.m in Sources */,
 				55D8AD9619AC75FA00DAF79F /* NSManagedObjectContext+MagicalObserving.m in Sources */,
+				153D5A381B78FB2400105C2F /* UIViewController+MJPopupViewController.m in Sources */,
 				55D8AD9919AC75FA00DAF79F /* NSManagedObjectModel+MagicalRecord.m in Sources */,
 				693206EA1962BCC300B15EF9 /* QMBaseCallsController.m in Sources */,
 				55D8AD1319AC758C00DAF79F /* QMBaseService.m in Sources */,
@@ -3216,6 +3314,7 @@
 				55D8AD8B19AC75FA00DAF79F /* NSNumber+MagicalDataImport.m in Sources */,
 				2494559819A48E7600E9352B /* NSString+GTMNSStringHTMLAdditions.m in Sources */,
 				55493694198677B0007F2CF1 /* QMContentOperation.m in Sources */,
+				154FAABD1B77D95C00061084 /* DataManager.m in Sources */,
 				55D8ADBB19AC762C00DAF79F /* QMDialogsDataSource.m in Sources */,
 				55A8B0A819659BA000B5D33B /* QMApi+Messages.m in Sources */,
 				55D8ADDE19AC76E200DAF79F /* QMAddUsersAbstractController.m in Sources */,
@@ -3238,6 +3337,7 @@
 				2444261F19F1106100C9C61A /* QMChatUtils.m in Sources */,
 				55D8AD9E19AC75FA00DAF79F /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				55D270911940B8D300238D50 /* QMDBStorage+Dialogs.m in Sources */,
+				154FAAC01B77D95C00061084 /* UIView+NHExtension.m in Sources */,
 				55D8ADD619AC76AE00DAF79F /* QMKeyboardController.m in Sources */,
 				55CEAB91195DBCFA001A8ED6 /* QMChatInputToolbar.m in Sources */,
 				55D8AD9519AC75FA00DAF79F /* NSManagedObject+MagicalRequests.m in Sources */,
@@ -3300,9 +3400,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "ebbdfc28-e106-420e-a935-2205e44f49ad";
+				PROVISIONING_PROFILE = "5fa93959-730b-41a7-9d88-e63f18f09ec2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3333,8 +3433,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "ebbdfc28-e106-420e-a935-2205e44f49ad";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				PROVISIONING_PROFILE = "5fa93959-730b-41a7-9d88-e63f18f09ec2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3371,7 +3471,7 @@
 				);
 				OTHER_LIBTOOLFLAGS = "$(inherited)";
 				PRODUCT_NAME = "Q-municate";
-				PROVISIONING_PROFILE = "ebbdfc28-e106-420e-a935-2205e44f49ad";
+				PROVISIONING_PROFILE = "5fa93959-730b-41a7-9d88-e63f18f09ec2";
 				REZ_SEARCH_PATHS = "$(inherited)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3426,7 +3526,7 @@
 				);
 				OTHER_LIBTOOLFLAGS = "$(inherited)";
 				PRODUCT_NAME = "Q-municate";
-				PROVISIONING_PROFILE = "ebbdfc28-e106-420e-a935-2205e44f49ad";
+				PROVISIONING_PROFILE = "5fa93959-730b-41a7-9d88-e63f18f09ec2";
 				REZ_SEARCH_PATHS = "$(inherited)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;

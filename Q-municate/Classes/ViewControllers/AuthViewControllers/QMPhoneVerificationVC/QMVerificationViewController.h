@@ -10,6 +10,17 @@
 
 @interface QMVerificationViewController : UIViewController <UITextFieldDelegate> {
     
+    NSString *yourName;
+    NSString *childName;
+    
+    NSString *schoolID;
+    NSString *schoolName;
+    
+    NSString *gradeID;
+    NSString *gradeName;
+    
+    NSString *classroomName;
+    NSString *selFlag;
 }
 
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
