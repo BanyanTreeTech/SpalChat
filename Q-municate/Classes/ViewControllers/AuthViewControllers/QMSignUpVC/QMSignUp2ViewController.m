@@ -14,6 +14,7 @@
 
 #import "UIViewController+MJPopupViewController.h"
 #import "MJDetailViewController.h"
+#import "UIScrollView+TPKeyboardAvoidingAdditions.h"
 
 #define REFRESH_HEADER_HEIGHT 100.0f
 
@@ -73,15 +74,17 @@
     [self selectParent:nil];
     
     self.myscrollView.scrollEnabled = NO;
-    
+  
     // Empty School Id and name
     [[NSUserDefaults standardUserDefaults] setObject:@""      forKey:SSchoolListID];
     [[NSUserDefaults standardUserDefaults] setObject:@""      forKey:SSchoolListName];
     
     //Format list array
     
-    listArray = [[NSMutableArray alloc] init];
-    listTempArray = [[NSMutableArray alloc] init];
+    schoolListArray = [[NSMutableArray alloc] init];
+    schoolListTempArray = [[NSMutableArray alloc] init];
+    gradeListArray  =   [[NSMutableArray alloc] init];
+    gradeListTempArray  =   [[NSMutableArray alloc] init];
     
     //Resize grade & classroom textfeild width
     
@@ -105,8 +108,19 @@
     self.line2WidthConstraint.constant = (self.view.frame.size.width - 60) * 0.6;
     self.text2WidthConstraint.constant = (self.view.frame.size.width - 60) * 0.6;
     
+    listID = -1;
     
-    // table border
+    addView = [[UIView alloc] initWithFrame:CGRectMake(20, 1110, self.nameLine.frame.size.width, 200)];
+    [UIView animateWithDuration:0.5 animations:^{addView.frame = CGRectMake(20, 110, self.nameLine.frame.size.width, 200);}];
+    
+    [self.view addSubview:addView];
+    addView.hidden = YES;
+    
+    tbl_addListView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, addView.frame.size.width, 200) style:UITableViewStylePlain];
+    
+    
+    [tbl_addListView setDataSource:self];
+    [tbl_addListView setDelegate:self];
     
     CALayer *layer = tbl_addListView.layer;
     [layer setMasksToBounds:YES];
@@ -114,14 +128,39 @@
     [layer setBorderWidth:1.0];
     [layer setBorderColor:[[UIColor colorWithRed:30.0/255.0 green:174.0/255.0 blue:216.0/255.0 alpha:1.0] CGColor]];
     
-    listID = -1;
+    [addView addSubview:tbl_addListView];
     
+//    // add tap gesture to help in dismissing keyboard
+//    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc]
+//                                           initWithTarget:self
+//                                           action:@selector(tapScreen:)];// outside textfields
+//    
+//    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void) onKeyboardWillHide {
+    [UIView animateWithDuration:0.3 animations:^{
+        addView.alpha = 0;
+    } completion:^(BOOL finished) {
+        addView.hidden = YES;
+        addView.alpha = 1;
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     
+//    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+    
     self.schoolText.text = [[NSUserDefaults standardUserDefaults]objectForKey:SSchoolListName];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -167,7 +206,8 @@
 - (IBAction)selectSchool:(id)sender
 {
     [self.schoolText resignFirstResponder];
-    [addView removeFromSuperview];
+//    [addView removeFromSuperview];
+    addView.hidden  =   YES;
     
     [self performSegueWithIdentifier:kSchoolListSegueIdentifier sender:nil];
 }
@@ -254,8 +294,9 @@
     
     if (fieldID == 1) {
         url = [NSString stringWithFormat:API_SCHOOLLIST, @"all"];
-    } else
+    } else {
         url = [NSString stringWithFormat:API_GRADELIST];
+    }
     
     // downloading data from Web Service API...
     responseData = [[NSMutableData alloc] init];
@@ -287,15 +328,18 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
-    
-    [SVProgressHUD dismiss];
-    
     NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     responseString = [responseString stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     NSLog(@"%@", responseString);
     
-    [listArray  removeAllObjects];
-    [listTempArray  removeAllObjects];
+    if (fieldID == 1) {
+        [schoolListArray        removeAllObjects];
+        [schoolListTempArray    removeAllObjects];
+    } else {
+        
+        [gradeListArray         removeAllObjects];
+        [gradeListTempArray     removeAllObjects];
+    }
     
     NSDictionary *data_array = [[SBJsonParser new] objectWithString:responseString];
     
@@ -304,11 +348,11 @@
     
     NSLog(@"ResponseCode %@ - %@", ResponseCode, Result);
     
-    NSMutableArray *schoolListArray = [data_array objectForKey:@"data"];
+    NSMutableArray *dataListArray = [data_array objectForKey:@"data"];
     
-    for (int i=0; i< (int) [schoolListArray count]; i++) {
+    for (int i=0; i< (int) [dataListArray count]; i++) {
         
-        NSDictionary *item = [schoolListArray objectAtIndex:i];
+        NSDictionary *item = [dataListArray objectAtIndex:i];
         if (item == nil)
             continue;
         
@@ -316,22 +360,25 @@
         
         
         if (fieldID == 1) {
-            listItem.schoolID2               = [item objectForKey:@"school_id"];
-            listItem.schoolName2             = [item objectForKey:@"school_name"];
+            
+            listItem.ItemID               = [item objectForKey:@"school_id"];
+            listItem.ItemName             = [item objectForKey:@"school_name"];
+            
+            [schoolListArray addObject:listItem];
+            [schoolListTempArray addObject:listItem];
+            
         } else {
             
-            listItem.schoolID2               = [item objectForKey:@"id"];
-            listItem.schoolName2             = [item objectForKey:@"grade_name"];
+            listItem.ItemID               = [item objectForKey:@"id"];
+            listItem.ItemName             = [item objectForKey:@"grade_name"];
+            
+            [gradeListArray addObject:listItem];
+            [gradeListTempArray addObject:listItem];
         }
-        
-        
-        [listArray addObject:listItem];
-        [listTempArray addObject:listItem];
-        
     }
-
     
-    [tbl_addListView reloadData];
+    [SVProgressHUD dismiss];
+//    [tbl_addListView reloadData];
     
 }
 
@@ -344,16 +391,16 @@
     
     if (fieldID == 1) {
         if (self.schoolText.text.length > 0) {
-            return [listTempArray count];
+            return [schoolListTempArray count];
         } else {
-            return [listArray count];
+            return [schoolListArray count];
         }
     } else {
         
         if (self.gradeText.text.length > 0) {
-            return [listTempArray count];
+            return [gradeListTempArray count];
         } else {
-            return [listArray count];
+            return [gradeListArray count];
         }
     }
     
@@ -369,25 +416,43 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    if (listID == indexPath.row)
-    {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+//    if (listID == indexPath.row)
+//    {
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    }
+//    else
+//    {
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//    }
     
-    if (self.schoolText.text.length > 0) {
-        allListItem *Item = [listTempArray objectAtIndex:indexPath.row];
+    if (fieldID == 1) {
         
-        cell.textLabel.text = Item.schoolName2;
+        if (self.schoolText.text.length > 0) {
+            allListItem *Item = [schoolListTempArray objectAtIndex:indexPath.row];
+            
+            cell.textLabel.text = Item.ItemName;
+        } else {
+            
+            allListItem *Item = [schoolListArray objectAtIndex:indexPath.row];
+            
+            cell.textLabel.text = Item.ItemName;
+        }
+
     } else {
         
-        allListItem *Item = [listArray objectAtIndex:indexPath.row];
-        
-        cell.textLabel.text = Item.schoolName2;
+        if (self.gradeText.text.length > 0) {
+            allListItem *Item = [gradeListTempArray objectAtIndex:indexPath.row];
+            
+            cell.textLabel.text = Item.ItemName;
+        } else {
+            
+            allListItem *Item = [gradeListArray objectAtIndex:indexPath.row];
+            
+            cell.textLabel.text = Item.ItemName;
+        }
+
     }
+    
     
     
     tableView.separatorColor = [UIColor colorWithRed:30/255.0 green:174/255.0 blue:215/255.0 alpha:1.0];
@@ -404,22 +469,28 @@
     
     listID = (int) indexPath.row;
     
-    allListItem *listItem = [listArray objectAtIndex:listID];
-    
     if (fieldID == 1) {
-        self.schoolText.text = listItem.schoolName2;
         
-        selectedSchoolName = listItem.schoolName2;
-        selectedSchoolId   = listItem.schoolID2;
+        allListItem *listItem = [schoolListArray objectAtIndex:listID];
+        
+        self.schoolText.text = listItem.ItemName;
+        
+        selectedSchoolName = listItem.ItemName;
+        selectedSchoolId   = listItem.ItemID;
     } else {
         
-        self.gradeText.text = listItem.schoolName2;
+        allListItem *listItem = [gradeListArray objectAtIndex:listID];
+        self.gradeText.text = listItem.ItemName;
         
-        selectedGradeName = listItem.schoolName2;
-        selectedGradeId   = listItem.schoolID2;
+        selectedGradeName = listItem.ItemName;
+        selectedGradeId   = listItem.ItemID;
     }
     
     [tableView reloadData];
+    
+    addView.hidden  = YES;
+    [self.schoolText resignFirstResponder];
+    [self.gradeText resignFirstResponder];
 }
 
 
@@ -429,49 +500,62 @@
     
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
     
-    
+    if (textField == self.schoolText) {
+        fieldID = 1;
+        
+        if (schoolListArray.count <= 0) {
+            [self searchListWithFiterItem];
+        }
+    } else if (textField == self.gradeText) {
+        fieldID = 2;
+        
+        if (gradeListArray.count <= 0) {
+            [self searchListWithFiterItem];
+        }
+    } else {
+        
+    }
 //    NSLog(@" %f", self.nameText.frame.);
     
-    if (textField == self.schoolText || textField == self.gradeText) {
-
-        addView = [[UIView alloc] initWithFrame:CGRectMake(20, 1110, self.nameLine.frame.size.width, 200)];
-        [UIView animateWithDuration:0.5 animations:^{addView.frame = CGRectMake(20, 110, self.nameLine.frame.size.width, 200);}];
-//        [addView setBackgroundColor:[UIColor redColor]];
-
-        [self.view addSubview:addView];
-        
-        if (textField == self.schoolText) {
-            fieldID = 1;
-        } else {
-            fieldID = 2;
-        }
-        
-        tbl_addListView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, addView.frame.size.width, 200) style:UITableViewStylePlain];
-//        [tbl_addListView setAutoresizesSubviews:YES];
-//        [tbl_addListView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-        
-        
-        [tbl_addListView setDataSource:self];
-        [tbl_addListView setDelegate:self];
-        
-        CALayer *layer = tbl_addListView.layer;
-        [layer setMasksToBounds:YES];
-        [layer setCornerRadius:5.0];
-        [layer setBorderWidth:1.0];
-        [layer setBorderColor:[[UIColor colorWithRed:30.0/255.0 green:174.0/255.0 blue:216.0/255.0 alpha:1.0] CGColor]];
-        
-        [addView addSubview:tbl_addListView];
-        
-        [self searchListWithFiterItem];
-//        [tbl_addListView reloadData];
-    }
+//    if (textField == self.schoolText || textField == self.gradeText) {
+//        
+//        addView = [[UIView alloc] initWithFrame:CGRectMake(20, 1110, self.nameLine.frame.size.width, 200)];
+//        [UIView animateWithDuration:0.5 animations:^{addView.frame = CGRectMake(20, 110, self.nameLine.frame.size.width, 200);}];
+//        
+//        [self.view addSubview:addView];
+//        
+//        if (textField == self.schoolText) {
+//            fieldID = 1;
+//        } else {
+//            fieldID = 2;
+//        }
+//        
+//        tbl_addListView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, addView.frame.size.width, 200) style:UITableViewStylePlain];
+//        
+//        
+//        [tbl_addListView setDataSource:self];
+//        [tbl_addListView setDelegate:self];
+//        
+//        CALayer *layer = tbl_addListView.layer;
+//        [layer setMasksToBounds:YES];
+//        [layer setCornerRadius:5.0];
+//        [layer setBorderWidth:1.0];
+//        [layer setBorderColor:[[UIColor colorWithRed:30.0/255.0 green:174.0/255.0 blue:216.0/255.0 alpha:1.0] CGColor]];
+//        
+//        [addView addSubview:tbl_addListView];
+//        
+//        [self searchListWithFiterItem];
+//    }
+    
     
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 
     [self.myscrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-    [addView removeFromSuperview];
+    
+//    [addView removeFromSuperview];
+    addView.hidden  =   YES;
     
     listID = -1;
     [textField resignFirstResponder];
@@ -480,22 +564,55 @@
 }
 
 - (IBAction)onTextChanged:(id)sender {
-    [listTempArray removeAllObjects];
     
-    //    NSLog(@"%@", schoolNameText.text);
+    addView.hidden = NO;
     
-    for (int i = 0; i < (int) listArray.count; i++) {
-        allListItem *item = [listArray objectAtIndex:i];
-        NSRange foundRange = [item.schoolName2.lowercaseString rangeOfString:self
+    [schoolListTempArray removeAllObjects];
+        
+    for (int i = 0; i < (int) schoolListArray.count; i++) {
+        
+        allListItem *item = [schoolListArray objectAtIndex:i];
+        NSRange foundRange = [item.ItemName.lowercaseString rangeOfString:self
                               .schoolText.text.lowercaseString];
         
         if (foundRange.length > 0) {
-            [listTempArray addObject:item];
+            [schoolListTempArray addObject:item];
         }
     }
+
+    
+    //    NSLog(@"%@", schoolNameText.text);
+    
+//    for (int i = 0; i < (int) listArray.count; i++) {
+//        allListItem *item = [listArray objectAtIndex:i];
+//        NSRange foundRange = [item.schoolName2.lowercaseString rangeOfString:self
+//                              .schoolText.text.lowercaseString];
+//        
+//        if (foundRange.length > 0) {
+//            [listTempArray addObject:item];
+//        }
+//    }
     
     [tbl_addListView reloadData];
 }
 
 
+- (IBAction)changeGradeList:(id)sender {
+    
+    addView.hidden = NO;
+    
+    [gradeListTempArray removeAllObjects];
+    
+    for (int i = 0; i < (int) gradeListArray.count; i++) {
+        
+        allListItem *item = [gradeListArray objectAtIndex:i];
+        NSRange foundRange = [item.ItemName.lowercaseString rangeOfString:self.gradeText.text.lowercaseString];
+        
+        if (foundRange.length > 0) {
+            [gradeListTempArray addObject:item];
+        }
+    }
+    
+    [tbl_addListView reloadData];
+}
 @end

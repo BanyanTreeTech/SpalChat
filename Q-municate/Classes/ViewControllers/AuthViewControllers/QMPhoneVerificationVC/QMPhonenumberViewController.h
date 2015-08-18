@@ -10,10 +10,13 @@
 
 @interface QMPhonenumberViewController : UIViewController <UITextFieldDelegate> {
     
+    NSMutableString *postCode;
 }
 
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
 @property (nonatomic, weak) IBOutlet UITextField *phonenumberText;
+
+@property (nonatomic, weak) IBOutlet UIView *line;
 
 
 @end

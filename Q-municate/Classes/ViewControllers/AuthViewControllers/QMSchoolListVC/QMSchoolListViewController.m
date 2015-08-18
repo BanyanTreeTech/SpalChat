@@ -58,6 +58,7 @@
     
     listID = -1;
 
+    layer.hidden = YES;
 }
 
 - (IBAction)GoBack:(id)sender {
@@ -186,14 +187,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    if (listID == indexPath.row)
-    {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+//    if (listID == indexPath.row)
+//    {
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    }
+//    else
+//    {
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//    }
     
     if (schoolNameText.text.length > 0) {
         schoolListItem *Item = [listTempArray objectAtIndex:indexPath.row];
@@ -229,6 +230,9 @@
     selectedId   = listItem.schoolID;
     
     [tableView reloadData];
+    
+    tbl_SchoolListView.hidden   =   YES;
+    [schoolNameText resignFirstResponder];
 }
 
 //
@@ -247,6 +251,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];
+     tbl_SchoolListView.hidden   =   YES;
     
     return YES;
 }
@@ -290,6 +295,11 @@
     [listTempArray removeAllObjects];
     
 //    NSLog(@"%@", schoolNameText.text);
+    
+    if (schoolNameText.text.length > 0) {
+        
+        tbl_SchoolListView.hidden   =   NO;
+    }
         
     for (int i = 0; i < (int) listArray.count; i++) {
         schoolListItem *item = [listArray objectAtIndex:i];

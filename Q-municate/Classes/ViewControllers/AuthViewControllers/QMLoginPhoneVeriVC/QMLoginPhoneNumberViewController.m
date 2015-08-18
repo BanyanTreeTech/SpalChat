@@ -8,6 +8,9 @@
 
 #import "QMLoginPhoneNumberViewController.h"
 
+#import "UIViewController+MJPopupViewController.h"
+#import "MJDetailViewController.h"
+
 @interface QMLoginPhoneNumberViewController ()
 
 @end
@@ -33,6 +36,15 @@
     UIColor *color = [UIColor colorWithRed:30.0/255.0 green:174.0/255.0 blue:216.0/255.0 alpha:1.0];
     
     self.phonenumberText.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Phone number" attributes:@{NSForegroundColorAttributeName: color}];
+    
+}
+
+- (IBAction)GoHelp:(id)sender {
+    
+    MJDetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MJDetailViewController"];
+    
+    [detailViewController.view setFrame:CGRectMake(0, -100, self.line.frame.size.width, 121)];
+    [self presentPopupViewController:detailViewController animationType:0];
 }
 
 - (IBAction)GoBack:(id)sender {

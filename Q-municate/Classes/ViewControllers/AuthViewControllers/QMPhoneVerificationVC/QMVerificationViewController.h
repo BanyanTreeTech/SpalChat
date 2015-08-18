@@ -33,6 +33,7 @@
     NSString *selFlag;
     
     NSString *phoneNumber;
+    NSString *verificationCode;
     
     NSMutableData*     responseData;
     
@@ -41,5 +42,7 @@
 
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
 @property (nonatomic, weak) IBOutlet UITextField *verificationText;
+
+@property (nonatomic, weak) IBOutlet UIView *line;
 
 @end

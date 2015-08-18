@@ -91,6 +91,7 @@ static NSString *const SignChildname        = @"SignChildname";
 static NSString *const SignClassroomname    = @"SignClassroomname";
 static NSString *const SignPhonenumber    = @"SignPhonenumber";
 
+static NSString *const VerCode             = @"VerificationCode";
 static NSString *const SignFlag             = @"SignFlag";
 
 //******************** USER DEFAULTS KEYS *****************

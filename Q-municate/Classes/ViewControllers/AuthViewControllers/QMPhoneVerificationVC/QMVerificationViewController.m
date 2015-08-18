@@ -8,9 +8,20 @@
 
 #import "QMVerificationViewController.h"
 
+#import "UIViewController+MJPopupViewController.h"
+#import "MJDetailViewController.h"
+
 #import "SBJSON.h"
 #import "SBJsonWriter.h"
 #import "SVProgressHUD.h"
+
+#import "QMLicenseAgreement.h"
+#import "QMSplashViewController.h"
+#import "QMApi.h"
+#import "QMSettingsManager.h"
+#import "SVProgressHUD.h"
+#import "REAlertView.h"
+#import "REAlertView+QMSuccess.h"
 
 #define REFRESH_HEADER_HEIGHT 100.0f
 
@@ -53,6 +64,14 @@
     self.verificationText.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Verification code" attributes:@{NSForegroundColorAttributeName: color}];
 }
 
+- (IBAction)GoHelp:(id)sender {
+    
+    MJDetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MJDetailViewController"];
+    
+    [detailViewController.view setFrame:CGRectMake(0, -100, self.line.frame.size.width, 121)];
+    [self presentPopupViewController:detailViewController animationType:0];
+}
+
 - (IBAction)GoBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -68,6 +87,7 @@
     gradeName = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
     
     classroomName = [[NSUserDefaults standardUserDefaults]objectForKey:SignYourname];
+    phoneNumber = [[NSUserDefaults standardUserDefaults]objectForKey:SignPhonenumber];
     
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:SignYourname]  isEqual: @"1"]) {
         selFlag = @"n";
@@ -75,17 +95,25 @@
         selFlag = @"y";
     }
     
+//    verificationCode = [[NSUserDefaults standardUserDefaults]objectForKey:VerCode];
     
-    if ([verificationText.text  isEqual: @"123456"]) {
-        
-        [self doRegistered];
-        
-//        [self performSegueWithIdentifier:KGoTabMainSegue sender:nil];
-    } else {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Invalid Verification code!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
+    if (!QMApi.instance.isInternetConnected) {
+        [REAlertView showAlertWithMessage:NSLocalizedString(@"QM_STR_CHECK_INTERNET_CONNECTION", nil) actionSuccess:NO];
+        return;
     }
+    
+    [self fireSignUp];
+    
+//    if ([verificationText.text  isEqual: verificationCode]) {
+//        
+//        [self doRegistered];
+//        
+////        [self performSegueWithIdentifier:KGoTabMainSegue sender:nil];
+//    } else {
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Invalid Verification code!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        [alert show];
+//    }
     
     
     
@@ -96,6 +124,24 @@
     
     [verificationText resignFirstResponder];
     
+}
+
+- (IBAction)chnageText:(id)sender {
+    
+    if (self.verificationText.text.length == 6) {
+        
+        [verificationText resignFirstResponder];
+    }
+}
+
+- (void)fireSignUp {
+    
+    verificationCode = [[NSUserDefaults standardUserDefaults]objectForKey:VerCode];
+    
+    if ([verificationText.text  isEqual: verificationCode]) {
+        [REAlertView showAlertWithMessage:NSLocalizedString(@"QM_STR_FILL_IN_ALL_THE_FIELDS", nil) actionSuccess:NO];
+        return;
+    }
 }
 
 - (void) doRegistered {

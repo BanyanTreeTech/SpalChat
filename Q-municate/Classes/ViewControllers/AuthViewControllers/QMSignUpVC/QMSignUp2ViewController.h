@@ -12,8 +12,8 @@
 
 @interface allListItem : NSObject
 
-@property (nonatomic, copy) NSString*   schoolID2;
-@property (nonatomic, copy) NSString*   schoolName2;
+@property (nonatomic, copy) NSString*   ItemID;
+@property (nonatomic, copy) NSString*   ItemName;
 
 @end
 
@@ -34,8 +34,12 @@
     NSString *selectedGradeName;
     
     NSMutableData*     responseData;
-    NSMutableArray*     listArray;
-    NSMutableArray*     listTempArray;
+    
+    NSMutableArray*     schoolListArray;
+    NSMutableArray*     schoolListTempArray;
+    
+    NSMutableArray*     gradeListArray;
+    NSMutableArray*     gradeListTempArray;
     
     int curConnectionState;
 }
